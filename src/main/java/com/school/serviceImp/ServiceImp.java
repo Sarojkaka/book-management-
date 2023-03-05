@@ -57,23 +57,29 @@ public class BookServiceImpl implements BookService {
 	
 	@Override
 	public BookDto createBook(BookDto bookDto) {
-		Book book = this.dtoToBook(bookDto);
-		Book savedBook = this.bookRepository.save(book);
-		return this.bookToDto(savedBook);
-	}
-
-	public Book dtoToBook(BookDto bookDto) 
-	{
-		Book book = this.modelMapper.map(bookDto, Book.class);
-		return book;
 		
+		Book book = this.modelMapper.map(bookDto, Book.class);
+		//Book book = this.dtoToBook(bookDto);
+		Book savedBook = this.bookRepository.save(book);
+		return this.modelMapper.map(savedBook, BookDto.class);
+		//return this.bookToDto(savedBook);
+		//Book book = this.dtoToBook(bookDto);
+		//Book savedBook = this.bookRepository.save(book);
+		//return this.bookToDto(savedBook);
 	}
-	
-	public BookDto  bookToDto(Book book){
-		BookDto bookDto = this.modelMapper.map(book, BookDto.class);
-		return bookDto;
 
-		}
+	//public Book dtoToBook(BookDto bookDto) 
+	//{
+	//	Book book = this.modelMapper.map(bookDto, Book.class);
+	//	return book;
+		
+	//}
+	
+	//public BookDto  bookToDto(Book book){
+	//	BookDto bookDto = this.modelMapper.map(book, BookDto.class);
+	//	return bookDto;
+
+	//	}
 
 	@Override
 	public BookDto createBook(BookDto bookDto) {
